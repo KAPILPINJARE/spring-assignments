@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:util="http://www.springframework.org/schema/util"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/util
+   http://www.springframework.org/schema/util/spring-util.xsd">
+ 
+	<context:property-placeholder location="classpath:dbConfig.properties"/>
+
+	<bean id="org" class="com.capgemini.spring.organization.Organization">   	
+	    <property name = "orgId" value = "101"/>
+       	    <property name = "orgName" value = "Capgemini"/>
+	    <property name = "marketPrice" value = "123456789"/>
+            <property name = "address" ref ="addr"/>
+
+ 	 <property name="directors">
+	 	<list>
+	 		<value>Abbas Pathan</value>
+			<value>Krishna Kulkarni</value>
+		 </list>
+	 </property>
+
+	<property name="branches">
+		 <set>
+			<value>Airoli</value>
+			<value>Vikroli</value>
+		 </set>
+	 </property>
+
+	<property name="branchWiseHead">
+	 	<map>
+	 		<entry key="Airoli">
+			 <value>Ayush</value>
+			 </entry>
+		
+			 <entry key="Vikroli">
+	 		<value>Prangshu</value>
+	 		</entry>
+ 		</map>
+ 	</property>
+	
+	 <property name="ipAddresses">
+ 		<props>
+	 		<prop key="proxy1">1012466</prop>
+ 			<prop key="proxy2">1564646</prop>
+	 	</props>
+	 </property>
+	 
+	<property name= "databaseDetails">
+   		<props>
+			<prop key="driverClassName">${driverClassName}</prop>
+    			<prop key="dburl">${dburl}</prop>
+    			<prop key="username">${username}</prop>
+			<prop key="password">${password}</prop>
+		</props>
+	</property>
+	
+	</bean>
+
+	<bean id = "addr" class="com.capgemini.spring.organization.address.Address">
+	   <property name = "city" value = "Mumbai" />
+	   <property name = "state" value = "Maharashtra" />
+	</bean>	
+</beans>

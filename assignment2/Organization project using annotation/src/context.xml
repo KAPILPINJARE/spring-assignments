@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:util="http://www.springframework.org/schema/util"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/util
+   http://www.springframework.org/schema/util/spring-util.xsd">
+ 
+	<context:property-placeholder location="classpath:dbConfig.properties"/>
+
+	<context:component-scan
+	  base-package="com"/>
+
+	<util:list id="directors" list-class="java.util.ArrayList">
+	  <value>Abbas Pathan</value>
+	  <value>Krishna Kulkarni</value>
+	</util:list>
+	
+	<util:set id="branches" set-class="java.util.HashSet">
+	  <value>Airoli</value>
+	  <value>Vikroli</value>
+	</util:set>
+
+	<util:map id="branchHead" map-class="java.util.HashMap">
+	  <entry key="Airoli" value="Ayush"/>
+	  <entry key="Vikroli" value="Prangshu"/>
+	</util:map>
+
+	<util:properties id="ipAddress">
+	  <prop key="proxy6">125.12.120.10</prop>
+	  <prop key="proxy8">150.11.100.00</prop>
+	</util:properties>
+
+	<util:properties id="db">
+	  <prop key="driverClassName">${driverClassName}</prop>
+	  <prop key="dburl">${dburl}</prop>
+	  <prop key="username">${username}</prop>
+	  <prop key="password">${password}</prop>
+	</util:properties>
+</beans>

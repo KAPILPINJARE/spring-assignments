@@ -1,25 +1,33 @@
 package com.capgemini.spring.organization;
 
+import com.capgemini.spring.organization.address.Address;
+import java.util.*;
+
+
+
 public class Organization
 {
 
 	private int orgId;
 	private String orgName;
 	private double marketPrice;
-	//private Address address;
-	//private List<String> directors;
-	//private Set<String> branches;
-	//private Map<String, String> branchWiseHead;
-	//private Properties ipAddresses;
-	//private Properties databaseDetails;
+	private Address address;
+	private List<String> directors;
+	private Set<String> branches;
+	private Map<String, String> branchWiseHead;
+	private Properties ipAddresses;
+	private Properties databaseDetails;
 
+	public Organization()
+	{}
+	
 	public Organization(int orgId, String orgName, double marketPrice)
 	{
 		this.orgId = orgId;
 		this.orgName = orgName;
 		this.marketPrice = marketPrice;	
 	}
-	/*
+
 	public Organization(int orgId, String orgName, double marketPrice, Address address, List<String> directors,
 			Set<String> branches, Map<String, String> branchWiseHead, Properties ipAddresses,
 			Properties databaseDetails)
@@ -108,12 +116,14 @@ public class Organization
 		this.databaseDetails = databaseDetails;
 	}
 
-	*/
 
+	
 	@Override
 	public String toString()
 	{
-		return "Organization [orgId=" + orgId + ", orgName=" + orgName + ", marketPrice=" + marketPrice + "]";
+		return "\n\tOrganization\n\n orgId=" + orgId + "\n orgName=" + orgName + "\n marketPrice=" + marketPrice + "\n address-\n"
+				+ address + "\n directors=" + directors + "\n branches=" + branches + "\n branchWiseHead=" + branchWiseHead
+				+ "\n ipAddresses=" + ipAddresses + "\n databaseDetails=" + databaseDetails;
 	}
 		
 }	

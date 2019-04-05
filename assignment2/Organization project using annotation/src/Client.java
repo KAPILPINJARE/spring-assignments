@@ -9,7 +9,7 @@ public class Client
 {
 	public static void main(String[] args)
 	{
-		ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+		ApplicationContext context = new GenericXmlApplicationContext("context.xml");
 		
 		Organization org = (Organization) context.getBean("org");
 		System.out.println(org.toString());
