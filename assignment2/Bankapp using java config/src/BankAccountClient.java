@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.springframework.context.*;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.*;
 
 import com.capgemini.bankapp.exceptions.AccountNotFoundException;
@@ -12,8 +13,7 @@ import com.capgemini.bankapp.exceptions.LowBalanceException;
 import com.capgemini.bankapp.model.BankAccount;
 import com.capgemini.bankapp.service.BankAccountService;
 import com.capgemini.bankapp.service.impl.BankAccountServiceImpl;
-
-import org.springframework.stereotype.*;
+import com.capgemini.bankapp.config.MyJavaConfig;
 
 
 public class BankAccountClient
@@ -30,7 +30,7 @@ public class BankAccountClient
 		long toAccountId;
 		
 
-		ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");	
+		ApplicationContext context = new AnnotationConfigApplicationContext(MyJavaConfig.class);	
 		BankAccountService accountService = (BankAccountService) context.getBean(BankAccountServiceImpl.class);
 		
 		System.out.println("\tMy Bank App");

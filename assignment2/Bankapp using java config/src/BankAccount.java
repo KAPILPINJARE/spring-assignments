@@ -1,10 +1,5 @@
 package com.capgemini.bankapp.model;
 
-import org.springframework.stereotype.*;
-import org.springframework.context.annotation.Scope;
-
-@Component
-@Scope("prototype")
 public class BankAccount
 {
 	private long accountId;

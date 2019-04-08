@@ -11,18 +11,11 @@ import com.capgemini.bankapp.dao.BankAccountDao;
 import com.capgemini.bankapp.model.BankAccount;
 import com.capgemini.bankapp.util.DbUtil;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-
-import javax.annotation.Resource;
-
-@Component("dao")
 public class BankAccountDaoImpl implements BankAccountDao
 {	
 	
 	Connection connection ;
 	
-	@Autowired
 	public BankAccountDaoImpl(Connection connection)
 	{
 		this.connection = connection;

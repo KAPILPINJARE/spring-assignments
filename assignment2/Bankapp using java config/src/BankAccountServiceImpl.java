@@ -10,17 +10,11 @@ import com.capgemini.bankapp.model.BankAccount;
 import com.capgemini.bankapp.service.BankAccountService;
 import com.capgemini.bankapp.util.DbUtil;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-
-
-@Service("service")
 public class BankAccountServiceImpl implements BankAccountService
 {	
 
 	private BankAccountDao bankAccountDao;
 	
-	@Autowired
 	public BankAccountServiceImpl(BankAccountDao bankAccountDao)
 	{
 		this.bankAccountDao = bankAccountDao;

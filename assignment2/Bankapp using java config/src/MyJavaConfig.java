@@ -1,6 +1,19 @@
+package com.capgemini.bankapp.config;
+
+import org.springframework.context.annotation.*;
+
+import java.util.*;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+
+import com.capgemini.bankapp.service.impl.BankAccountServiceImpl;
+import com.capgemini.bankapp.dao.impl.BankAccountDaoImpl;
+import com.capgemini.bankapp.model.BankAccount;
+import com.capgemini.bankapp.util.DbUtil;
 
 @Configuration
-public MyJavaConfig
+public class MyJavaConfig
 {
 	@Bean
 	public BankAccountServiceImpl getServiceImpl()
@@ -17,14 +30,14 @@ public MyJavaConfig
 	@Bean
 	public Connection getDbConnection()
 	{
-		Dbutil get = new Dbutil();
-		return get.getConnection(getDatabaseDetails());
+		return DbUtil.getConnetion(getDatabaseDetails());
 	}
 
-	@bean
+	@Bean
 	public Properties getDatabaseDetails()
 	{
 		FileReader reader = null;
+		Properties databaseDetails = null;
 		try
 		{
 			reader = new FileReader("src/dbConfig.properties");
@@ -36,5 +49,12 @@ public MyJavaConfig
 			e.printStackTrace();
 		}
 		return databaseDetails;
+	}
+
+	@Bean
+	@Scope("prototype")
+	public BankAccount getBankAccount()
+	{
+		return new BankAccount();
 	}
 }

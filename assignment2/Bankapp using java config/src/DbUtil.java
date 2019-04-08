@@ -9,10 +9,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.springframework.stereotype.*;
-import org.springframework.beans.factory.annotation.*;
-
-
 public class DbUtil
 {
 
