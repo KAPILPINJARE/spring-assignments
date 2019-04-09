@@ -6,4 +6,5 @@ public interface Calculator
 	public void subtract(Integer num1, Integer num2);
 	public Integer multiply(Integer num1,Integer num2);
 	public void divide(Integer num1,Integer num2);
+	public void afterThrow(int num1,int num2);
 }

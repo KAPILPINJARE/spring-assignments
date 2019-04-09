@@ -14,7 +14,13 @@ public class Main
 	
 		calculator.add(10,20);
 		calculator.subtract(80,40);
-		calculator.multiply(42,2);
+		calculator.multiply(20,2);
 		calculator.divide(50,0);
+		try
+		{
+			calculator.afterThrow(10,0);
+		}
+		catch(Exception ex)
+		{}
 	}
 }
