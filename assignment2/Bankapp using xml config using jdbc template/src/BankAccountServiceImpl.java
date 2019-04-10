@@ -9,8 +9,9 @@ import com.capgemini.bankapp.exceptions.LowBalanceException;
 import com.capgemini.bankapp.model.BankAccount;
 import com.capgemini.bankapp.service.BankAccountService;
 
+import org.springframework.transaction.annotation.*;
 
-
+@Transactional
 public class BankAccountServiceImpl implements BankAccountService
 {
 	private BankAccountDao bankAccountDao;
@@ -40,7 +41,6 @@ public class BankAccountServiceImpl implements BankAccountService
 		{
 			balance = balance - amount;
 			bankAccountDao.updateBalance(accountId, balance);
-			bankAccountDao.commit();
 			return balance;
 		} else 
 			throw new LowBalanceException("account balance not sufficient..");
@@ -54,7 +54,6 @@ public class BankAccountServiceImpl implements BankAccountService
 			throw new AccountNotFoundException("BankAccount doesnt exists...");
 		balance = balance + amount;
 		bankAccountDao.updateBalance(accountId, balance);
-		bankAccountDao.commit();
 		return balance;
 	}
 
@@ -64,7 +63,6 @@ public class BankAccountServiceImpl implements BankAccountService
 		boolean result = bankAccountDao.deleteBankAccount(accountId);
 		if(result)
 		{
-			bankAccountDao.commit();
 			return result;
 		}
 			else
@@ -72,6 +70,7 @@ public class BankAccountServiceImpl implements BankAccountService
 	}
 
 	@Override
+	@Transactional(rollbackFor = AccountNotFoundException.class)
 	public double fundTransfer(long fromAccount, long toAccount, double amount)
 			throws LowBalanceException, AccountNotFoundException
 	{
@@ -82,7 +81,6 @@ public class BankAccountServiceImpl implements BankAccountService
 			deposit(toAccount, amount);
 		} catch (LowBalanceException | AccountNotFoundException e)
 		{
-			bankAccountDao.rollback();
 			throw e;
 		}
 		return balance;
@@ -92,9 +90,7 @@ public class BankAccountServiceImpl implements BankAccountService
 	public boolean addNewBankAccount(BankAccount account)
 	{
 		boolean result = bankAccountDao.addNewBankAccount(account);
-		if(result)
-			bankAccountDao.commit();
-		return result;
+			return result;
 	}
 
 	@Override
@@ -116,8 +112,6 @@ public class BankAccountServiceImpl implements BankAccountService
 	public boolean updateAccount(BankAccount account)
 	{
 		boolean result = bankAccountDao.updateAccount(account);
-		if(result)
-			bankAccountDao.commit();
 		return result;
 	}
 

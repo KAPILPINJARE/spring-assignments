@@ -63,7 +63,11 @@ public class BankAccountClient
 						
 					case 2:	System.out.println("enter account id");
 							accountId = Long.parseLong(reader.readLine());
-							System.out.println(accountService.checkBalance(accountId));
+							try{
+								System.out.println(accountService.checkBalance(accountId));
+							}catch(AccountNotFoundException e){
+								System.out.println("------account not exists--------");
+							}
 							break;
 					
 					case 3: System.out.println("enter account id");
@@ -79,7 +83,7 @@ public class BankAccountClient
 							}
 							catch (AccountNotFoundException e)
 							{
-								System.out.println("-----Bank Account not exists------");
+								System.out.println("------account not exists--------");
 							}
 					 		break;
 					
@@ -92,7 +96,7 @@ public class BankAccountClient
 								System.out.println("Amount after deposit " + accountService.deposit(accountId, amount));
 							} catch (AccountNotFoundException e)
 							{
-								System.out.println("----account not found-----");
+								System.out.println("-------account not exists--------");
 							}
 							break;
 							
@@ -107,7 +111,7 @@ public class BankAccountClient
 								System.out.println(accountService.fundTransfer(fromAccountId, toAccountId, amount));
 							} catch (AccountNotFoundException | LowBalanceException e)
 							{
-								System.out.println("account not exists..");
+								System.out.println("------account not exists--------");
 							}
 							break;
 							
@@ -119,18 +123,24 @@ public class BankAccountClient
 					
 					case 7: System.out.println("enter account id to be searched");
 					 		accountId = Long.parseLong(reader.readLine());
-					 		if(accountService.searchForAccount(accountId) == null)
-					 			System.out.println("no accounts present for this account id");
-					 		else
-					 			System.out.println(accountService.searchForAccount(accountId));
+					 		try{
+								System.out.println(accountService.searchForAccount(accountId));
+							}catch(AccountNotFoundException e){
+								System.out.println("------account not exists--------");
+							}	
 					 		break;
 					
 					case 8: System.out.println("enter account id to be deleted");
 							accountId = Long.parseLong(reader.readLine());
-							if(accountService.deleteBankAccount(accountId))
-								System.out.println("Account deleted successfully..");
-							else
-								System.out.println("failed to delete the account");
+							try{
+								if(accountService.deleteBankAccount(accountId))
+									System.out.println("Account deleted successfully..");
+								else
+									System.out.println("failed to delete the account");
+							}catch(AccountNotFoundException e)
+							{
+								System.out.println("------account not exists--------");
+							}
 							break;
 					
 					case 9:	System.out.println("enter account id");
@@ -150,7 +160,7 @@ public class BankAccountClient
 					 		}
 					 		catch(AccountNotFoundException e)
 					 		{
-					 			System.out.println("account doesot exists");
+					 			System.out.println("------account not exists--------");
 					 		}
 					 		
 					 		break;

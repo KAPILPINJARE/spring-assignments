@@ -13,7 +13,5 @@ public interface BankAccountDao
 	public List<BankAccount> findAllBankAccounts();
 	public Object searchForAccount(long accountId);
 	public boolean updateAccount(BankAccount account);
-	public void commit();
-	public void rollback();
 	
 }

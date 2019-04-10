@@ -10,7 +10,7 @@ public interface BankAccountDao
 	public int updateBalance(long accountId,double newBalance);
 	public boolean deleteBankAccount(long accountId);
 	public boolean addNewBankAccount(BankAccount account);
-	public List<BankAccount> findAllBankAccounts();
+	public List<BankAccount> findAllBankAccounts() throws Exception;
 	public Object searchForAccount(long accountId);
 	public boolean updateAccount(BankAccount account);
 	public void commit();
